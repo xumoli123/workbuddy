@@ -49,3 +49,5 @@ workbuddy/
 2. 对Agent、大模型上下文、Skill的概念解释部分进行人工改写，使用个人通俗理解重新表述，去除AI生成的冗余套话。
 3. 校验概念之间的逻辑关系，修正了AI生成内容中部分边界模糊的描述。
 4. 修复三份学习资料中失效的外部参考链接，替换为主题匹配、可正常访问的权威技术文档来源。
+5. 新增 `learning-materials/concept-relationship.html`，用关系图、区别对比表与速查表梳理 Agent、大模型上下文、Skill 三个概念之间的相互关系，并附权威参考来源链接。
+6. 完善 `skills/concept-learning-generator/SKILL.md`：补充头部 YAML 元数据（name/description），确认其可接收任意 AI 概念作为输入的通用可复用项目级 Skill，并保留输出完整 HTML 学习文档结构的格式要求。

@@ -99,6 +99,43 @@
   <tr><td>工具配合</td><td>工具 / MCP ↔ 三者</td><td>工具是可调用的零件（能力层），Skill 指导如何组合工具（方法层），Agent 在上下文中编排这一切（执行层）。</td></tr>
 </table>
 
+<h2>三者的区别：不是一回事</h2>
+<p>三者经常被混着叫，但它们处在系统的不同层面。联系看上面的图，区别看这张表：</p>
+<table>
+  <tr><th>对比维度</th><th>Agent（智能体）</th><th>上下文（Context）</th><th>Skill（技能）</th></tr>
+  <tr><td>本质</td><td>能自主循环执行任务的系统</td><td>模型一次推理能"看到"的全部 Token</td><td>把任务方法写成文档的知识包</td></tr>
+  <tr><td>类比</td><td>会干活的人</td><td>人面前的桌面</td><td>抽屉里的操作手册</td></tr>
+  <tr><td>存在形式</td><td>程序 + LLM + 工具 + 循环逻辑</td><td>每次请求中动态拼装的 Token 序列</td><td>SKILL.md 文件 + 可选脚本/资源</td></tr>
+  <tr><td>生命周期</td><td>随应用部署长期存在</td><td>单次对话/单轮推理，用完即弃</td><td>跨会话长期沉淀，版本可管理</td></tr>
+  <tr><td>谁来改变它</td><td>开发者设计，用户配置</td><td>系统每轮自动重组（历史+工具结果+注入内容）</td><td>人（或Agent）总结经验后编写更新</td></tr>
+</table>
+
+<h2>上下文如何影响 Agent 的运行</h2>
+<p>Agent 每一轮"思考 → 行动 → 观察"循环，本质上都是把当前上下文交给大模型重新推理一次。因此上下文直接决定了 Agent 的三件事：</p>
+<ul>
+  <li><strong>能记住什么</strong>：上下文窗口有长度上限，放不下全部历史就要截断或压缩。被裁掉的内容 Agent 就"忘了"，所以长任务需要笔记、摘要等记忆管理手段。</li>
+  <li><strong>能看见什么</strong>：工具调用结果、用户偏好、当前任务说明，只有进入上下文模型才知道。上下文组织得越清晰，Agent 的决策质量越高——"桌面整洁，干活才快"。</li>
+  <li><strong>多花多少成本</strong>：上下文越长，每次推理的 Token 消耗和延迟越高。这也是 Skill 采用"渐进式披露"的原因：平时只在上下文里放一行"名称+描述"，匹配到任务才加载正文。</li>
+</ul>
+
+<h2>Skill 如何沉淀成可复用的任务知识</h2>
+<p>Skill 的价值在于把"一次会话里的经验"变成"下次直接能用的方法"，路径是：</p>
+<ol>
+  <li><strong>经验文档化</strong>：把做好某类任务的步骤、注意事项、示例写成 SKILL.md（就像人把工作心得写成 SOP 手册）；</li>
+  <li><strong>元数据索引</strong>：文件头部用 <code>name</code> + <code>description</code> 声明"这个技能是干什么的"，让 Agent 不用读全文就知道何时该用它；</li>
+  <li><strong>按需加载</strong>：任务匹配时才把正文与配套脚本渐进式注入上下文，不占用日常空间；</li>
+  <li><strong>跨会话复用</strong>：Skill 以文件形式存放在项目里（如 <code>skills/</code> 目录），可以进 git 版本管理、团队共享、持续迭代——会话结束了，方法留下了。</li>
+</ol>
+<div class="quote">一句话：上下文负责"这一次怎么干"，Skill 负责"这类活儿以后都怎么干"。</div>
+
+<h2>权威参考来源</h2>
+<ul>
+  <li>Anthropic 工程博客《Building Effective Agents》——Agent 的循环与编排设计：<a href="https://www.anthropic.com/engineering/building-effective-agents">anthropic.com/engineering/building-effective-agents</a></li>
+  <li>Anthropic 官方文档《Context Windows》——上下文窗口的构成与限制：<a href="https://docs.anthropic.com/en/docs/build-with-claude/context-windows">docs.anthropic.com/…/context-windows</a></li>
+  <li>Anthropic 工程博客《Equipping Agents for the Real World with Agent Skills》——Skill 的设计理念与渐进式披露：<a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">anthropic.com/engineering/…agent-skills</a></li>
+  <li>Model Context Protocol 官网——Agent 连接工具与外部数据的标准协议：<a href="https://modelcontextprotocol.io">modelcontextprotocol.io</a></li>
+</ul>
+
 <h2>延伸阅读</h2>
 <ul>
   <li>Agent 详解：<code>learning-materials/agent.html</code></li>
