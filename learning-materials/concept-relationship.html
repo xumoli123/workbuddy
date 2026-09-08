@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>概念关系图：Agent · 上下文 · Skill</title>
+<style>
+  :root { --blue: #4a6cf7; --green: #0f9d76; --orange: #d97706; --bg: #ffffff; --panel: #f7f8fb; --text: #1f2430; --muted: #5c6470; --border: #e3e8f0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif; line-height: 1.85; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  header { border-bottom: 3px solid var(--blue); padding-bottom: 16px; margin-bottom: 28px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .meta { color: var(--muted); font-size: 14px; }
+  h2 { font-size: 21px; margin: 40px 0 12px; padding-left: 12px; border-left: 5px solid var(--blue); }
+  p, li { font-size: 16px; }
+  .diagram { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 20px 0; text-align: center; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 15px; }
+  th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
+  th { background: var(--panel); }
+  .tag-blue { color: var(--blue); font-weight: 700; }
+  .tag-green { color: var(--green); font-weight: 700; }
+  .tag-orange { color: var(--orange); font-weight: 700; }
+  .quote { background: var(--panel); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; padding: 12px 18px; margin: 14px 0; }
+  footer { margin-top: 60px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>三个概念的关系：Agent · 大模型上下文 · Skill</h1>
+  <div class="meta">配套 concept-relationship 学习资料 · 由 concept-learning-generator 体系生成 · 2026-09-08</div>
+</header>
+
+<p>三份学习资料分别讲了 <span class="tag-blue">Agent</span>、<span class="tag-green">上下文（Context）</span>、<span class="tag-orange">Skill</span>，它们并不是孤立的知识点，而是一个智能体系统的三块拼图。下图把它们放进同一张图里：</p>
+
+<div class="diagram">
+<svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <!-- Agent 大圆（执行主体） -->
+  <circle cx="450" cy="240" r="200" fill="#eef1fe" stroke="#4a6cf7" stroke-width="3"/>
+  <text x="450" y="60" text-anchor="middle" font-size="22" font-weight="bold" fill="#4a6cf7">Agent 智能体</text>
+  <text x="450" y="86" text-anchor="middle" font-size="14" fill="#4a6cf7">大脑（LLM）+ 手脚（工具）+ 循环</text>
+
+  <!-- Context 圆（工作台） -->
+  <circle cx="380" cy="270" r="110" fill="#e8f7f2" stroke="#0f9d76" stroke-width="3"/>
+  <text x="380" y="185" text-anchor="middle" font-size="18" font-weight="bold" fill="#0f9d76">上下文 Context</text>
+  <text x="380" y="208" text-anchor="middle" font-size="13" fill="#0f9d76">工作台桌面：一次推理</text>
+  <text x="380" y="226" text-anchor="middle" font-size="13" fill="#0f9d76">能看到的全部 Token</text>
+
+  <!-- Skill 方块（按需注入） -->
+  <rect x="560" y="330" width="180" height="90" rx="12" fill="#fdf3e3" stroke="#d97706" stroke-width="3"/>
+  <text x="650" y="365" text-anchor="middle" font-size="18" font-weight="bold" fill="#d97706">Skill 技能</text>
+  <text x="650" y="390" text-anchor="middle" font-size="13" fill="#d97706">SOP 手册包</text>
+  <text x="650" y="408" text-anchor="middle" font-size="13" fill="#d97706">SKILL.md + 资源</text>
+
+  <!-- Skill → Context：按需加载 -->
+  <defs>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#d97706"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#0f9d76"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4a6cf7"/>
+    </marker>
+  </defs>
+  <path d="M 570 340 Q 500 310 455 295" fill="none" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-orange)" stroke-dasharray="7 5"/>
+  <text x="548" y="303" text-anchor="middle" font-size="13" fill="#d97706" font-weight="bold">任务匹配时按需加载</text>
+  <text x="548" y="320" text-anchor="middle" font-size="12" fill="#d97706">渐进式披露：描述 → 正文 → 资源</text>
+
+  <!-- Context → Agent：支撑决策 -->
+  <path d="M 330 240 Q 320 205 335 175" fill="none" stroke="#0f9d76" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <text x="300" y="160" text-anchor="middle" font-size="13" fill="#0f9d76" font-weight="bold">装着记忆与工具结果</text>
+  <text x="300" y="177" text-anchor="middle" font-size="12" fill="#0f9d76">支撑"思考→行动→观察"循环</text>
+
+  <!-- Agent → Skill：触发与读取 -->
+  <path d="M 560 395 Q 620 430 660 425" fill="none" stroke="#4a6cf7" stroke-width="0" />
+  <path d="M 490 380 Q 525 420 556 385" fill="none" stroke="#4a6cf7" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  <text x="495" y="425" text-anchor="middle" font-size="13" fill="#4a6cf7" font-weight="bold">Agent 读取并照做</text>
+
+  <!-- 底部工具注释 -->
+  <rect x="120" y="392" width="250" height="60" rx="10" fill="#ffffff" stroke="#e3e8f0" stroke-width="2"/>
+  <text x="245" y="418" text-anchor="middle" font-size="14" font-weight="bold" fill="#5c6470">工具（Tool / MCP）</text>
+  <text x="245" y="438" text-anchor="middle" font-size="12" fill="#5c6470">可被调用的零件与外部连接</text>
+  <path d="M 300 380 Q 280 385 260 390" fill="none" stroke="#5c6470" stroke-width="2" stroke-dasharray="4 4"/>
+</svg>
+</div>
+
+<h2>一句话读懂三者关系</h2>
+<div class="quote"><span class="tag-blue">Agent</span> 是"会干活的人"，<span class="tag-green">上下文</span> 是"他面前的桌面"，<span class="tag-orange">Skill</span> 是"抽屉里的操作手册"。人围着桌面工作，手册按需从抽屉抽出来摊到桌面上——桌面放不下所有手册，也不需要一次全摊开。</div>
+
+<h2>关系速查表</h2>
+<table>
+  <tr><th>关系</th><th>谁 → 谁</th><th>含义</th></tr>
+  <tr><td>运行依赖</td><td>Agent → 上下文</td><td>Agent 每轮"思考-行动-观察"都依赖上下文窗口装载历史与工具结果；上下文即 Agent 的工作记忆边界。</td></tr>
+  <tr><td>按需注入</td><td>Skill → 上下文</td><td>Skill 平时只以"名称+描述"占极少空间，任务匹配时才把 SKILL.md 正文与资源渐进式加载进上下文。</td></tr>
+  <tr><td>触发使用</td><td>Agent → Skill</td><td>Agent 根据任务判断调用哪个技能，读取其流程说明后照做，把"经验"变成可复用步骤。</td></tr>
+  <tr><td>工具配合</td><td>工具 / MCP ↔ 三者</td><td>工具是可调用的零件（能力层），Skill 指导如何组合工具（方法层），Agent 在上下文中编排这一切（执行层）。</td></tr>
+</table>
+
+<h2>延伸阅读</h2>
+<ul>
+  <li>Agent 详解：<code>learning-materials/agent.html</code></li>
+  <li>上下文详解：<code>learning-materials/llm-context.html</code></li>
+  <li>Skill 详解：<code>learning-materials/skill.html</code></li>
+</ul>
+
+<footer>概念关系图 · 由 concept-learning-generator 体系生成 · 建议先读三份单独资料，再看本页对照</footer>
+</div>
+</body>
+</html>

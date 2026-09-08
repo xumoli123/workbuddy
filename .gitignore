@@ -1,0 +1,38 @@
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器与 IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志与临时文件
+*.log
+*.tmp
+*.bak
+*.cache/
+
+# 环境变量与密钥
+.env
+.env.*
+*.pem
+*.key
+
+# Python（如后续添加脚本）
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node（如后续添加工具）
+node_modules/
+package-lock.json
+
+# 构建产物
+dist/
+build/
+output/
