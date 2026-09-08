@@ -11,9 +11,10 @@ workbuddy/
 │   ├── llm-context.html         # 大模型的上下文（Context）
 │   ├── skill.html               # Skill（技能）
 │   └── concept-relationship.html # 三概念关系图（建议最后看）
-├── skills/
-│   └── concept-learning-generator/
-│       └── SKILL.md             # 生成学习资料的 Skill 定义（保持不变）
+├── .workbuddy/
+│   └── skills/
+│       └── concept-learning-generator/
+│           └── SKILL.md         # 项目级 Skill 定义（严格按作业要求路径存放）
 ├── README.md
 └── .gitignore
 ```
@@ -33,7 +34,7 @@ workbuddy/
 
 ## 🛠 生成新概念的学习资料
 
-使用 `skills/concept-learning-generator/SKILL.md` 中定义的流程：
+使用 `.workbuddy/skills/concept-learning-generator/SKILL.md` 中定义的流程：
 
 - 输入：概念名称（如 RAG、KV Cache、Mixture of Experts），可选深度（入门/进阶/专家）
 - 输出：六模块结构的 HTML 学习资料，保存至 `learning-materials/` 目录
@@ -51,3 +52,4 @@ workbuddy/
 4. 修复三份学习资料中失效的外部参考链接，替换为主题匹配、可正常访问的权威技术文档来源。
 5. 新增 `learning-materials/concept-relationship.html`，用关系图、区别对比表与速查表梳理 Agent、大模型上下文、Skill 三个概念之间的相互关系，并附权威参考来源链接。
 6. 完善 `skills/concept-learning-generator/SKILL.md`：补充头部 YAML 元数据（name/description），确认其可接收任意 AI 概念作为输入的通用可复用项目级 Skill，并保留输出完整 HTML 学习文档结构的格式要求。
+7. 按作业严格要求调整：将 SKILL.md 移动至 `.workbuddy/skills/concept-learning-generator/` 目录，符合 WorkBuddy 项目级 Skill 的标准存放路径。

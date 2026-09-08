@@ -124,7 +124,7 @@
   <li><strong>经验文档化</strong>：把做好某类任务的步骤、注意事项、示例写成 SKILL.md（就像人把工作心得写成 SOP 手册）；</li>
   <li><strong>元数据索引</strong>：文件头部用 <code>name</code> + <code>description</code> 声明"这个技能是干什么的"，让 Agent 不用读全文就知道何时该用它；</li>
   <li><strong>按需加载</strong>：任务匹配时才把正文与配套脚本渐进式注入上下文，不占用日常空间；</li>
-  <li><strong>跨会话复用</strong>：Skill 以文件形式存放在项目里（如 <code>skills/</code> 目录），可以进 git 版本管理、团队共享、持续迭代——会话结束了，方法留下了。</li>
+  <li><strong>跨会话复用</strong>：Skill 以文件形式存放在项目的 <code>.workbuddy/skills/</code> 目录（本项目级 Skill 的标准路径），可以进 git 版本管理、团队共享、持续迭代——会话结束了，方法留下了。</li>
 </ol>
 <div class="quote">一句话：上下文负责"这一次怎么干"，Skill 负责"这类活儿以后都怎么干"。</div>
 
